@@ -1,0 +1,284 @@
+/* configuratore.css – la sezione "In mostra" con il visualizzatore 3D
+   (si aggiunge a stile_esercizio4.css senza modificarlo) */
+
+.sezione-configuratore {
+    padding-top: 48px;
+}
+
+/* ===== visore 3D (colonna sinistra) ===== */
+/* PASSO 3: il visore */
+.visore {
+    position: relative;
+    min-height: 650px;
+    background: radial-gradient(circle at 50% 55%, #3c3730 0%, #221e19 55%, #100f0c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* il canvas creato da Three.js riempie il visore (ci servirà dall'es. 2) */
+.visore canvas {
+    display: block;
+}
+
+.toggle-modalita,
+.toggle-esploso,
+.copia-vista {
+    position: absolute;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    color: var(--testo);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.toggle-modalita:hover,
+.toggle-esploso:hover,
+.copia-vista:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+}
+
+.toggle-modalita {
+    top: 16px;
+    right: 16px;
+}
+
+.toggle-esploso {
+    bottom: 16px;
+    left: 16px;
+}
+
+.copia-vista {
+    display: none;
+    top: 16px;
+    left: 16px;
+}
+
+/* PASSO 4: la scritta al centro del visore */
+.visore-segnaposto {
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    padding: 0 24px;
+    text-align: center;
+}
+
+
+/* ===== pannello opzioni (colonna destra) ===== */
+.pannello {
+    padding-top: 8px;
+    padding-bottom: 32px;
+}
+
+.sovratitolo {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0 0 4px 0;
+}
+
+.descrizione {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.opzione {
+    border-top: solid 1px #e5e0d6;
+    padding: 16px 0;
+}
+
+.opzione-titolo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.opzione-valore {
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+/* PASSO 5: i campioni in fila */
+.campione {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin: 0 10px 0 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, outline-offset 0.15s ease;
+}
+
+/* PASSO 6: i campioni diventano cerchi e quello scelto si riconosce */
+.campione {
+    border-radius: 50%;
+}
+
+.campione:hover {
+    transform: scale(1.15);
+}
+
+.campione.selected {
+    outline: 2px solid var(--accento);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .campione {
+        transition: none;
+    }
+    .campione:hover {
+        transform: none;
+    }
+}
+
+/* ===== settori: una riga di campioni per ogni componente colorabile della lampada =====
+   (il colore di ogni campione è impostato via stile inline da configuratore.js, non più da classi CSS:
+   la palette è troppo ampia per avere una classe dedicata per ciascun colore) */
+.settori-colore .settore {
+    margin-bottom: 16px;
+}
+
+.settori-colore .settore:last-child {
+    margin-bottom: 0;
+}
+
+.settore-nome {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.settore-nome .opzione-valore {
+    font-weight: normal;
+}
+
+.settore .campione {
+    width: 26px;
+    height: 26px;
+    margin: 0 8px 0 0;
+}
+
+
+/* PASSO 7: i bottoni del gruppo Misura */
+.misura,
+.forma {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    padding: 8px 16px;
+    border: solid 1px #d8d2c4;
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--testo);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.misura.selected,
+.forma.selected {
+    background: var(--accento);
+    border-color: var(--accento);
+    color: #ffffff;
+}
+
+.misura:disabled,
+.forma:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* le 5 combinazioni colore pronte: un cerchio con una sfumatura continua tra i suoi colori
+   (lo sfondo con il conic-gradient viene impostato via stile inline da configuratore.js) */
+.combinazioni-colore {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.combinazione-colore {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.combinazione-colore.selected {
+    outline: 2px solid var(--accento);
+    outline-offset: 3px;
+}
+
+.grandezza-slider {
+    width: 100%;
+    accent-color: var(--accento);
+    cursor: pointer;
+}
+
+
+/* ===== nota e bottone ===== */
+.nota {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.55);
+    border-top: solid 1px #e5e0d6;
+    padding-top: 16px;
+    margin: 0;
+}
+
+.btn-principale {
+    display: block;
+    width: 100%;
+    background: var(--accento);
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    padding: 14px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-principale:hover {
+    background: var(--accento-scuro);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -8px rgba(170, 142, 98, 0.55);
+}
+
+.btn-principale:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-principale {
+        transition: none;
+    }
+    .btn-principale:hover {
+        transform: none;
+    }
+}
+
+/* ===== media query del configuratore ===== */
+@media (max-width: 991px) {
+    /* PASSO 8: il visore su tablet e telefono */
+}

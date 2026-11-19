@@ -1,0 +1,286 @@
+/* stile_esercizio4.css */
+:root {
+    --accento: #aa8e62;
+    --accento-scuro: #8a7049;
+    --testo: #1d1d1f;
+    --sfondo: #fbfbfd;
+}
+
+/* l'attributo HTML "hidden" deve sempre vincere, anche quando una classe dello
+   stesso elemento impone un display (es. .prova-risultato con display:flex):
+   senza questa regola quegli elementi restano visibili pur essendo "hidden" */
+[hidden] {
+    display: none !important;
+}
+
+html, body{
+     font: normal 16px/24px -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, sans-serif;
+     margin:0;
+     color: var(--testo);
+     background: var(--sfondo);
+     -webkit-font-smoothing: antialiased;
+    }
+
+.content-wrapper{
+    max-width: 1200px;
+}
+
+/* barra di navigazione: fissa in alto con effetto vetro smerigliato, come nei
+   siti Apple, invece di scorrere via con il resto della pagina */
+.row.pt-4.pb-5.mb-5.align-items-center {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    margin-bottom: 0 !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    background: rgba(251, 251, 253, 0.8);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: solid 1px rgba(0, 0, 0, 0.06);
+}
+
+.logo{
+    width: 100%;
+    min-width: 140px;
+    max-width: 170px;
+}
+
+ /* Lista di navigazione */
+.nav-list {
+    list-style: none;
+    padding-left: 0;
+
+    display: flex;
+    justify-content: center;
+    /* justify-content: flex-start; */
+    align-items: center;
+}
+
+/* Items della navigazione */
+.nav-item {
+    margin: 0;
+    padding: 0;
+}
+
+/* Links */
+.nav-link {
+    color: rgba(29, 29, 31, 0.7);
+    border-bottom: solid 2px transparent;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 8px;
+    padding: 8px;
+    white-space: nowrap;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--testo);
+    border-bottom-color: var(--accento);
+}
+
+.nav-link.selected {
+    color: var(--testo);
+    border-bottom: solid 2px var(--accento);
+    cursor: default;
+}
+
+/* navigazione mobile */
+.mobile-nav-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accento);
+    z-index: 1000;
+    display: flex;
+    padding-top: 33%;
+    justify-content: center;
+    align-items: flex-start;
+    display: none;
+
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    pointer-events: none;
+
+}
+
+.mobile-nav-wrapper.show{
+display: flex;
+
+}
+
+.mobile-nav-wrapper .nav-list{
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+.mobile-nav-wrapper .nav-item{
+    margin: 15px 0;
+    width: 100%;
+
+}
+
+.mobile-nav-wrapper .nav-link{
+    font-size: 24px;
+    padding: 8px 0;
+    
+
+}
+
+.mobile-nav-wrapper .nav-link.selected{
+    color: #ffffff;
+    border-bottom: none;
+    cursor: default;
+}
+
+.mobile-nav-wrapper .nav-link:hover{
+    color: rgba(255, 255, 255, 0.75);
+    border-bottom: none;
+
+}
+
+
+
+.mobile-nav-wrapper.show {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+/* Bottone di ricerca */
+.btn-cerca{
+    background: transparent url('../img/search.svg') no-repeat center center;
+    border: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 0; /* Nasconde il testo del bottone */
+    margin: 3px 10px 0 0;
+}
+
+/* Bottone menu */
+.btn-menu{
+    background: transparent url('../img/menu.svg') no-repeat center center;
+    border: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 0; /* Nasconde il testo del bottone */
+    margin: 0 10px !important;
+}
+
+/* Bottone close menu */
+.btn-close{
+    background: transparent url('../img/close.svg') no-repeat center center;
+    background-size: cover;
+    border: none;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 0; /* Nasconde il testo del bottone */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
+
+
+
+/* testo in colonne */
+.testo-colonne {
+    column-count: 3;
+    column-gap: 40px;
+    /* column-rule: solid 1px #ccc; */
+}
+.testo-2colonne {
+    column-count: 2;
+    column-gap: 40px;
+    /* column-rule: solid 1px #ccc; */
+}
+
+/* stili testo */
+.color-gray {
+    color: rgb(180, 180, 180);
+}
+
+.font-normal {
+    font-weight: normal;
+}
+
+.font-1{
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.font-2{
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.font-3{
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* sfondo sezioni */
+
+.sfondo-0{
+    background: transparent url('../img/triennale-sala.jpg') center center;
+    background-size: cover;
+}
+
+.sfondo-0 .row{
+    min-height: 500px;
+}
+
+.sfondo-1{
+    background-color: #f4f1ea;
+}
+
+.bg-color-white{
+    background-color: #ffffff;
+}
+
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .logo{
+        max-width: 150px;
+    }
+    .testo-colonne {
+        column-count: 2;
+    }
+    .font-3{
+        font-size: 28px;
+        line-height: 36px;
+    }
+    .font-2{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .sfondo-0 .row{
+        min-height: 700px;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .testo-colonne {
+        column-count: 1;
+    }
+   
+}

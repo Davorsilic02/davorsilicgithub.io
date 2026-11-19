@@ -1,0 +1,418 @@
+/* catalogo.css – la pagina con tutti i modelli .glb in formato catalogo
+   (si aggiunge a stile_esercizio4.css senza modificarlo) */
+
+.sezione-catalogo {
+    padding-top: 16px;
+    padding-bottom: 64px;
+}
+
+.catalogo-sottotitolo {
+    margin: 64px 0 28px 0;
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.catalogo-sottotitolo::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 48px;
+    height: 3px;
+    background: var(--accento);
+}
+
+/* il titolo e il sottotitolo in cima alla pagina entrano con una leggera
+   dissolvenza verso l'alto invece di apparire di colpo */
+.prima-row h1,
+.prima-row h2 {
+    animation: comparsa-dolce 0.8s cubic-bezier(.16,.84,.44,1) both;
+}
+
+.prima-row h2 {
+    animation-delay: 0.08s;
+}
+
+@keyframes comparsa-dolce {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .prima-row h1,
+    .prima-row h2 {
+        animation: none;
+    }
+}
+
+/* ===== griglia delle schede ===== */
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 40px 28px;
+}
+
+.catalogo-card {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+    /* comparsa delle card quando entrano nello schermo: catalogo.js aggiunge
+       "visibile" alla scheda tramite lo stesso IntersectionObserver che avvia
+       l'anteprima 3D, quindi i due movimenti partono insieme */
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(.16,.84,.44,1),
+                transform 0.7s cubic-bezier(.16,.84,.44,1);
+}
+
+.catalogo-card.visibile {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .catalogo-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+.catalogo-titolo {
+    position: relative;
+    display: inline-block;
+}
+
+/* una sottolineatura che si allunga invece del solito text-decoration */
+.catalogo-titolo::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accento);
+    transition: width 0.3s ease;
+}
+
+.catalogo-card:hover .catalogo-titolo::after {
+    width: 100%;
+}
+
+.catalogo-card.cliccabile {
+    cursor: pointer;
+}
+
+/* ===== riquadro con l'anteprima 3D che ruota =====
+   stesso sfondo neutro per TUTTI i riquadri, compreso quello "non disponibile":
+   prima il file non convertito aveva uno sfondo chiaro mentre tutti gli altri
+   erano scurissimi, un salto di tono che rendeva il catalogo incoerente */
+.catalogo-viewer {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
+    background: #d8d4c9;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    transition: transform 0.45s cubic-bezier(.16,.84,.44,1),
+                box-shadow 0.45s cubic-bezier(.16,.84,.44,1);
+}
+
+.catalogo-card:hover .catalogo-viewer {
+    transform: translateY(-6px) scale(1.025);
+    box-shadow: 0 22px 36px -12px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .catalogo-viewer {
+        transition: none;
+    }
+    .catalogo-card:hover .catalogo-viewer {
+        transform: none;
+    }
+}
+
+.catalogo-viewer canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* scritta "Caricamento…" finché il modello non è pronto, con un leggero pulsare */
+.catalogo-viewer[data-src]:not(.pronto)::before {
+    content: "Caricamento…";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    animation: pulsare 1.6s ease-in-out infinite;
+}
+
+@keyframes pulsare {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .catalogo-viewer[data-src]:not(.pronto)::before {
+        animation: none;
+    }
+}
+
+/* riquadro per i modelli che non si possono ancora mostrare (es. file non convertito in glTF):
+   stesso sfondo neutro degli altri, cambia solo il contenuto (testo invece del canvas 3D) */
+.catalogo-viewer.non-disponibile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.catalogo-avviso {
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    padding: 0 22px;
+    margin: 0;
+}
+
+.catalogo-titolo {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 6px 0;
+}
+
+.catalogo-descrizione {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.65);
+    margin: 0;
+}
+
+.catalogo-file {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/* ===== pagina di dettaglio di un singolo modello (scheda.html) ===== */
+.link-indietro {
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.link-indietro:hover {
+    color: var(--accento);
+}
+
+/* stesso sfondo neutro della griglia del catalogo, al posto dello sfondo scuro di .visore */
+.scheda-visore {
+    background: #d8d4c9;
+}
+
+.nota-prova {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 10px 0 0 0;
+}
+
+/* ===== prova virtuale con la fotocamera: riquadro a schermo intero ===== */
+.prova-virtuale {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 2000;
+}
+
+.prova-virtuale-schermo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* il video e il canvas 3D sono sovrapposti esattamente, e insieme vengono
+   specchiati (così muoversi a destra sullo schermo sembra muoversi a destra
+   anche per chi si guarda, come in uno specchio) */
+.prova-virtuale-schermo video,
+.prova-virtuale-schermo canvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    transform: scaleX(-1);
+}
+
+.prova-virtuale-schermo canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(-1);
+}
+
+.prova-stato {
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin: 0;
+    max-width: 80%;
+    text-align: center;
+}
+
+.prova-chiudi {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a1a1a;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* regolazione manuale della dimensione, in alto a sinistra per non intralciare il viso */
+.prova-regolazione {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.prova-regolazione button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: solid 1px rgba(255, 255, 255, 0.6);
+    background: transparent;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* il pulsante di scatto: grande, centrato in basso, come l'otturatore di una fotocamera */
+.prova-scatta {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: solid 4px rgba(255, 255, 255, 0.85);
+    background: #ffffff;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.prova-scatta:hover {
+    transform: translateX(-50%) scale(1.06);
+}
+
+.prova-scatta:active {
+    transform: translateX(-50%) scale(0.94);
+}
+
+/* ===== la foto scattata, con le opzioni di condivisione ===== */
+.prova-risultato {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 24px;
+}
+
+.prova-risultato img {
+    max-width: 100%;
+    max-height: 55vh;
+    border-radius: 4px;
+}
+
+.prova-risultato-azioni {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 360px;
+}
+
+.prova-risultato-azioni .btn-principale {
+    width: 100%;
+}
+
+.prova-link {
+    color: #ffffff;
+    background: none;
+    border: solid 1px rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.prova-link-piattaforme {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.prova-link-piattaforme .prova-link {
+    width: auto;
+    flex: 1;
+}
+
+.prova-nota-instagram {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 500px) {
+    .catalogo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 32px 20px;
+    }
+}
