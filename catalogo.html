@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triennale Milano – Catalogo dei modelli</title>
+  <link rel="stylesheet" href="css/bootstrap-grid.css">
+  <link rel="stylesheet" href="css/stile_esercizio4.css">
+  <link rel="stylesheet" href="css/configuratore.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+  <!-- Three.js da CDN: "three" è la libreria, "three/addons/" sono gli strumenti extra (controlli, loader...) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+        <div class="row pt-4 pb-5 mb-5 align-items-center">
+            <div class="col-6 col-lg-2">
+              <a href="#"><img class="logo" src="img/logo-triennale.svg" alt="Triennale Milano"></a>
+            </div>
+            <div class="col-lg-9 nav-wrapper d-none d-lg-block">
+                <ul class="nav-list">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link selected"><strong>Mostre</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Museo del <strong>Design</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Teatro</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Visita</strong></a>
+                      </li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-1 d-flex justify-content-end align-items-center">
+              <button class="btn btn-cerca">Cerca</button>
+              <button class="btn btn-menu d-block d-lg-none">Menu</button>
+            </div>
+        </div>
+
+        <div class="mobile-nav-wrapper d-lg-none">
+                 <button class="btn btn-close mb-3">Close</button>
+                <ul class="nav-list">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link selected"><strong>Mostre</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Museo del <strong>Design</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Teatro</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Visita</strong></a>
+                      </li>
+                </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid content-wrapper">
+
+          <div class="row prima-row mb-5">
+                <div class="col-12 col-sm-6 mb-3 mb-md-0">
+                    <h1 class="font-3">Catalogo dei modelli</h1>
+                </div>
+                <div class="col-12 col-sm-5">
+                    <h2 class="font-2 color-gray font-normal">Ventiquattro file .glb, ognuno con la sua anteprima che ruota lentamente su se stessa</h2>
+                </div>
+          </div>
+
+          <div class="row mb-5 pt-3">
+              <div class="col-12 testo-colonne">
+                  Qui sono raccolti tutti i modelli 3D presenti nel progetto: le proposte di occhiali realizzate da ogni studente, più i due modelli usati nelle pagine del configuratore. Ogni riquadro carica l'anteprima solo quando entra nello schermo, così da non tenere troppi modelli aperti insieme.
+              </div>
+          </div>
+
+    </div>
+
+    <!-- ===== catalogo: le proposte di occhiali ===== -->
+    <div class="container content-wrapper sezione-catalogo">
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="font-3 catalogo-sottotitolo">Le proposte di occhiali</h2>
+            </div>
+        </div>
+
+        <div class="catalogo-grid">
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/demariniadele.glb"></div>
+                <h3 class="catalogo-titolo">Adele De Marini</h3>
+                <p class="catalogo-descrizione">Montatura e lenti in plastica ridotte all'essenziale, divise in due sole parti: le aste e la lente. Lo stesso file, non personalizzato nei colori, torna identico anche nelle proposte di Francesca Galli e di Giulia.</p>
+                <span class="catalogo-file">demariniadele.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/alessandromorri.glb"></div>
+                <h3 class="catalogo-titolo">Alessandro Morri</h3>
+                <p class="catalogo-descrizione">Il modello più scomposto del catalogo: 581 parti, colorate in verde, rosso, nero, grigio e blu, senza nomi assegnati ai singoli elementi. Lo stesso identico file compare anche come proposta di Linda Garnaroli.</p>
+                <span class="catalogo-file">alessandromorri.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/AnnaPorcellini.glb"></div>
+                <h3 class="catalogo-titolo">Anna Porcellini</h3>
+                <p class="catalogo-descrizione">Montatura bianca con dettagli arancioni e finiture metalliche grigie; lenti, gommini, ferramenta, aste e struttura sono modellati come componenti distinte. La stessa combinazione torna, con un file separato, nelle due versioni firmate Takwa Guezguez.</p>
+                <span class="catalogo-file">AnnaPorcellini.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/camilasaraviaruiz.glb"></div>
+                <h3 class="catalogo-titolo">Camila Saravia Ruiz</h3>
+                <p class="catalogo-descrizione">Gli occhiali sono mostrati indossati su una testa stilizzata e semi-trasparente: lenti blu trasparenti e montatura quasi nera, scomposta in oltre cento dettagli. Convertito da un file Rhino originale, come il modello di Federica Cancello.</p>
+                <span class="catalogo-file">camilasaraviaruiz.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/davidesebastianelli.glb"></div>
+                <h3 class="catalogo-titolo">Davide Sebastianelli</h3>
+                <p class="catalogo-descrizione">Montatura in plastica nera opaca con un accento blu e una lente chiara; la struttura è divisa in montatura, occhiale e lente su 27 parti. Lo stesso file torna come proposta di Luigi Boccarossa.</p>
+                <span class="catalogo-file">davidesebastianelli.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/fabbri_Edoardo.glb"></div>
+                <h3 class="catalogo-titolo">Edoardo Fabbri</h3>
+                <p class="catalogo-descrizione">Montatura rosso scuro con lenti chiare e semitrasparenti, modellata come un unico blocco: il nodo del modello conserva ancora il nome «Occhiali Carnevali Fabbri», segno di un file nato da un lavoro condiviso.</p>
+                <span class="catalogo-file">fabbri_Edoardo.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/Eleonora_Nobili.glb"></div>
+                <h3 class="catalogo-titolo">Eleonora Nobili</h3>
+                <p class="catalogo-descrizione">Design molto scomposto, in 41 parti, nei toni del nero, del rosso scuro, del verde menta e del verde bosco; lente e interno della lente sono trattati come elementi distinti.</p>
+                <span class="catalogo-file">Eleonora_Nobili.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/federicacancello.glb"></div>
+                <h3 class="catalogo-titolo">Federica Cancello</h3>
+                <p class="catalogo-descrizione">Stessa impostazione del modello di Camila Saravia Ruiz: testa semi-trasparente, lenti blu e montatura quasi nera, scomposta in oltre cento parti, convertita da un file Rhino originale.</p>
+                <span class="catalogo-file">federicacancello.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/francescagalli.glb"></div>
+                <h3 class="catalogo-titolo">Francesca Galli</h3>
+                <p class="catalogo-descrizione">Montatura e lenti in plastica essenziale, divise in aste e lente: lo stesso file non personalizzato di Adele De Marini e di Giulia.</p>
+                <span class="catalogo-file">francescagalli.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/giacomocerioni.glb"></div>
+                <h3 class="catalogo-titolo">Giacomo Cerioni</h3>
+                <p class="catalogo-descrizione">Montatura trasparente in vetro, scomposta in stanghetta destra, stanghetta sinistra e lenti: la stessa idea minimale di Jacopo Del Bianco e Gianmarco Tito, con una suddivisione leggermente diversa delle parti.</p>
+                <span class="catalogo-file">giacomocerioni.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/gianmarcotito.glb"></div>
+                <h3 class="catalogo-titolo">Gianmarco Tito</h3>
+                <p class="catalogo-descrizione">Montatura minimale interamente in vetro trasparente, su tre sole parti: lente, stanghetta sinistra e stanghetta destra. Stesso file di Jacopo Del Bianco.</p>
+                <span class="catalogo-file">gianmarcotito.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/giuliacamasso.glb"></div>
+                <h3 class="catalogo-titolo">Giulia Camasso</h3>
+                <p class="catalogo-descrizione">Montatura in plastica su dodici elementi, lasciati senza un nome specifico per ciascuna parte: a differenza di altre proposte simili, qui non sono stati assegnati colori ai materiali.</p>
+                <span class="catalogo-file">giuliacamasso.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/3d_occhiali_giuli.glb"></div>
+                <h3 class="catalogo-titolo">Giulia</h3>
+                <p class="catalogo-descrizione">Montatura e lenti in plastica essenziale, divise in aste e lente: stesso file, non personalizzato, delle proposte di Adele De Marini e Francesca Galli.</p>
+                <span class="catalogo-file">3d_occhiali_giuli.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/Jacopo_Del_Bianco.glb"></div>
+                <h3 class="catalogo-titolo">Jacopo Del Bianco</h3>
+                <p class="catalogo-descrizione">Montatura minimale interamente in vetro trasparente, su tre sole parti: lente, stanghetta sinistra e stanghetta destra. Stesso file di Gianmarco Tito.</p>
+                <span class="catalogo-file">Jacopo_Del_Bianco.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/lindagarnaroli.glb"></div>
+                <h3 class="catalogo-titolo">Linda Garnaroli</h3>
+                <p class="catalogo-descrizione">Come nel modello di Alessandro Morri: 581 parti colorate in verde, rosso, nero, grigio e blu, senza nomi assegnati ai singoli elementi. Il file è identico al suo.</p>
+                <span class="catalogo-file">lindagarnaroli.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/lucagiorgetti.glb"></div>
+                <h3 class="catalogo-titolo">Luca Giorgetti</h3>
+                <p class="catalogo-descrizione">Montatura compatta, in sole otto parti, con cinque colori vivaci: blu, rosso, verde, ciano e arancione.</p>
+                <span class="catalogo-file">lucagiorgetti.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/luigiboccarossa.glb"></div>
+                <h3 class="catalogo-titolo">Luigi Boccarossa</h3>
+                <p class="catalogo-descrizione">Stessa combinazione del modello di Davide Sebastianelli: montatura nera opaca con un accento blu, divisa in montatura, occhiale e lente. Il file è identico al suo.</p>
+                <span class="catalogo-file">luigiboccarossa.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/martinacarnevali.glb"></div>
+                <h3 class="catalogo-titolo">Martina Carnevali</h3>
+                <p class="catalogo-descrizione">Montatura nei toni del terracotta, con stanghette in un rosso più scuro e un dettaglio quasi bianco, su una struttura di 28 parti.</p>
+                <span class="catalogo-file">martinacarnevali.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/SofiaBezzicheri.glb"></div>
+                <h3 class="catalogo-titolo">Sofia Bezzicheri</h3>
+                <p class="catalogo-descrizione">Stessa palette del modello di Eleonora Nobili — nero, rosso scuro, verde menta e verde bosco — ma qui le 41 parti del modello non sono etichettate singolarmente.</p>
+                <span class="catalogo-file">SofiaBezzicheri.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/takwaguezguez.glb"></div>
+                <h3 class="catalogo-titolo">Takwa Guezguez</h3>
+                <p class="catalogo-descrizione">Montatura bianca con dettagli arancioni e finiture metalliche grigie; lenti, gommini, ferramenta, aste e struttura come parti distinte — la stessa combinazione del modello di Anna Porcellini.</p>
+                <span class="catalogo-file">takwaguezguez.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/valentinavicinanza.glb"></div>
+                <h3 class="catalogo-titolo">Valentina Vicinanza</h3>
+                <p class="catalogo-descrizione">Modello molto denso, quasi 600 nodi, che porta con sé anche elementi tecnici del disegno Rhino originale — quote, tavole e curve di silhouette — insieme alla montatura nei toni del nero, rosso, grigio e arancione.</p>
+                <span class="catalogo-file">valentinavicinanza.glb</span>
+            </article>
+
+            <article class="catalogo-card">
+                <div class="catalogo-viewer" data-src="glb/mongiustiviola.glb"></div>
+                <h3 class="catalogo-titolo">Viola Mongiusti</h3>
+                <p class="catalogo-descrizione">Montatura multicolore — blu, ciano, rosso, verde e arancione — scomposta per funzione: davanti, dietro, appoggio naso, lente e stanghette.</p>
+                <span class="catalogo-file">mongiustiviola.glb</span>
+            </article>
+
+        </div>
+    </div>
+
+    <!-- ===== catalogo: i modelli usati nelle pagine del configuratore ===== -->
+    <div class="container content-wrapper sezione-catalogo">
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="font-3 catalogo-sottotitolo">Anche nel sito</h2>
+            </div>
+        </div>
+
+        <div class="catalogo-grid">
+
+            <article class="catalogo-card" data-href="occhiali.html">
+                <div class="catalogo-viewer" data-src="glb/occhiale-3dm.glb"></div>
+                <h3 class="catalogo-titolo">Modello Oakley (prototipo)</h3>
+                <p class="catalogo-descrizione">Il modello di riferimento usato nel <a href="occhiali.html">configuratore degli occhiali</a>: montatura blu scuro con un dettaglio crema, lenti blu trasparenti e minuteria in metallo nero, esportato da Rhino con 19 mesh.</p>
+                <span class="catalogo-file">occhiale-3dm.glb</span>
+            </article>
+
+            <article class="catalogo-card" data-href="index.html">
+                <div class="catalogo-viewer" data-src="glb/ph5.glb"></div>
+                <h3 class="catalogo-titolo">Lampada PH5</h3>
+                <p class="catalogo-descrizione">L'unico modello del catalogo che non è un occhiale: la lampada di Poul Henningsen usata nella <a href="index.html">pagina della mostra «Luce del Nord»</a>.</p>
+                <span class="catalogo-file">ph5.glb</span>
+            </article>
+
+        </div>
+    </div>
+
+    <!-- qui si inserisce il codice JavaScript -->
+    <script type="module" src="js/catalogo.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triennale Milano – Occhiali</title>
+  <link rel="stylesheet" href="css/bootstrap-grid.css">
+  <link rel="stylesheet" href="css/stile_esercizio4.css">
+  <link rel="stylesheet" href="css/configuratore.css">
+  <!-- Three.js da CDN: "three" è la libreria, "three/addons/" sono gli strumenti extra (controlli, loader...) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+        <div class="row pt-4 pb-5 mb-5 align-items-center">
+            <div class="col-6 col-lg-2">
+              <a href="#"><img class="logo" src="img/logo-triennale.svg" alt="Triennale Milano"></a>
+            </div>
+            <div class="col-lg-9 nav-wrapper d-none d-lg-block">
+                <ul class="nav-list">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link selected"><strong>Mostre</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Museo del <strong>Design</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Teatro</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Visita</strong></a>
+                      </li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-1 d-flex justify-content-end align-items-center">
+              <button class="btn btn-cerca">Cerca</button>
+              <button class="btn btn-menu d-block d-lg-none">Menu</button>
+            </div>
+        </div>
+
+        <div class="mobile-nav-wrapper d-lg-none">
+                 <button class="btn btn-close mb-3">Close</button>
+                <ul class="nav-list">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link selected"><strong>Mostre</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Museo del <strong>Design</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Teatro</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Visita</strong></a>
+                      </li>
+                </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid content-wrapper">
+
+          <div class="row prima-row mb-5">
+                <div class="col-12 col-sm-6 mb-3 mb-md-0">
+                    <h1 class="font-3">Occhiali Oakley</h1>
+                </div>
+                <div class="col-12 col-sm-5">
+                    <h2 class="font-2 color-gray font-normal">Un modello 3D scomposto nelle sue componenti, da osservare e colorare a piacere</h2>
+                </div>
+          </div>
+
+          <div class="row mb-5 pt-3">
+              <div class="col-12 testo-colonne">
+                  Il modello è diviso in quattro componenti — montatura, lenti, dettaglio e cerniere — ciascuna con il proprio materiale (plastica, lenti da vista, plastica lucida, metallo) e personalizzabile nel colore qui sotto.
+              </div>
+          </div>
+
+    </div>
+
+    <!-- ===== sezione con il visualizzatore 3D ===== -->
+    <div class="container content-wrapper sezione-configuratore">
+        <div class="row mb-4">
+            <div class="col-12 col-lg-8">
+                <p class="sovratitolo">Configuratore 3D</p>
+                <h2 class="font-3">Osserva gli occhiali</h2>
+            </div>
+        </div>
+        <div class="row mb-5 gx-5">
+
+            <!-- lo spazio per il 3D: #visore sta DENTRO la colonna, non è lui stesso la colonna,
+                 altrimenti il suo sfondo si estenderebbe anche nel gutter e non risulterebbe più
+                 allineato a sinistra con il titolo "Osserva gli occhiali" sopra -->
+            <div class="col-lg-8">
+                <div id="visore" class="visore">
+                    <button type="button" id="toggle-modalita" class="toggle-modalita">Illuminata</button>
+                    <button type="button" id="toggle-esploso" class="toggle-esploso">Vista esplosa</button>
+                    <button type="button" id="copia-vista" class="copia-vista">Copia vista</button>
+                </div>
+            </div>
+
+            <!-- il pannello con le opzioni da scegliere -->
+            <div class="col-12 col-lg-4 pannello">
+                <h3 class="font-3">Occhiali Oakley</h3>
+                <p class="descrizione">Scegli una combinazione di colori pronta oppure personalizza il colore di ogni singola componente.</p>
+
+                <div class="opzione">
+                    <h3 class="opzione-titolo">Combinazioni colore <span id="combinazione-valore" class="opzione-valore">—</span></h3>
+                    <!-- le 5 icone a cerchio vengono generate da occhiali-configuratore.js -->
+                    <div class="combinazioni-colore" id="combinazioni-colore"></div>
+                </div>
+
+                <!-- le righe dei singoli componenti vengono generate da occhiali-configuratore.js -->
+                <div class="opzione settori-colore" id="settori-colore">
+                    <h3 class="opzione-titolo">Colore per componente</h3>
+                </div>
+
+                <div class="opzione">
+                    <h3 class="opzione-titolo">Grandezza <span id="grandezza-valore" class="opzione-valore">100%</span></h3>
+                    <input type="range" id="grandezza" class="grandezza-slider" min="50" max="150" value="100" step="5">
+                </div>
+
+                <p class="nota">Trascina per girare gli occhiali, usa la rotella per avvicinarti.</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- ===== fine sezione ===== -->
+
+    <!-- qui si inserisce il codice JavaScript -->
+    <script type="module" src="js/occhiali-configuratore.js"></script>
+
+</body>
+</html>

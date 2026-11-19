@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triennale Milano – Scheda del modello</title>
+  <link rel="stylesheet" href="css/bootstrap-grid.css">
+  <link rel="stylesheet" href="css/stile_esercizio4.css">
+  <link rel="stylesheet" href="css/configuratore.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+  <!-- Three.js da CDN: "three" è la libreria, "three/addons/" sono gli strumenti extra (controlli, loader...) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+        <div class="row pt-4 pb-5 mb-5 align-items-center">
+            <div class="col-6 col-lg-2">
+              <a href="#"><img class="logo" src="img/logo-triennale.svg" alt="Triennale Milano"></a>
+            </div>
+            <div class="col-lg-9 nav-wrapper d-none d-lg-block">
+                <ul class="nav-list">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link selected"><strong>Mostre</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Museo del <strong>Design</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Teatro</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Visita</strong></a>
+                      </li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-1 d-flex justify-content-end align-items-center">
+              <button class="btn btn-cerca">Cerca</button>
+              <button class="btn btn-menu d-block d-lg-none">Menu</button>
+            </div>
+        </div>
+
+        <div class="mobile-nav-wrapper d-lg-none">
+                 <button class="btn btn-close mb-3">Close</button>
+                <ul class="nav-list">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link selected"><strong>Mostre</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link">Museo del <strong>Design</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Teatro</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link"><strong>Visita</strong></a>
+                      </li>
+                </ul>
+        </div>
+    </div>
+
+    <div class="container content-wrapper">
+          <div class="row mb-4">
+              <div class="col-12">
+                  <a href="catalogo.html" class="link-indietro">← Torna al catalogo</a>
+              </div>
+          </div>
+    </div>
+
+    <!-- ===== scheda del modello: anteprima grande + nome + descrizione ===== -->
+    <div class="container content-wrapper sezione-configuratore">
+        <div class="row mb-5 gx-5">
+
+            <div class="col-lg-8">
+                <div id="visore" class="visore scheda-visore"></div>
+            </div>
+
+            <div class="col-12 col-lg-4 pannello">
+                <p class="sovratitolo">Catalogo dei modelli</p>
+                <h2 id="scheda-titolo" class="font-3">—</h2>
+                <p id="scheda-descrizione" class="descrizione">Caricamento…</p>
+
+                <!-- compare solo per il modello "Federica Cancello": ha anche una pagina
+                     prodotto dedicata in stile Apple (grafite.html) -->
+                <a href="grafite.html" id="link-grafite" class="nota-prova" style="display:block; margin: 0 0 16px 0;" hidden>Scopri la versione "Grafite" di questo modello →</a>
+
+                <!-- le righe dei materiali colorabili vengono generate da scheda.js:
+                     cambiano da modello a modello, non esiste un set fisso di componenti -->
+                <div class="opzione settori-colore" id="scheda-colori"></div>
+
+                <div class="opzione">
+                    <h3 class="opzione-titolo">Misure stimate</h3>
+                    <p id="scheda-misure" class="descrizione">Caricamento…</p>
+                </div>
+
+                <p class="nota">Trascina per girare il modello, usa la rotella per avvicinarti. Ruota lentamente anche da solo.</p>
+
+                <!-- ===== prova virtuale con la fotocamera ===== -->
+                <div class="opzione">
+                    <button type="button" id="apri-prova-virtuale" class="btn-principale" hidden>Provali con la fotocamera</button>
+                    <p class="nota-prova">Il riconoscimento del volto gira nel tuo browser: nessuna immagine viene inviata altrove.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- il riquadro a schermo intero della prova virtuale: nascosto finché non si apre -->
+    <div id="prova-virtuale" class="prova-virtuale" hidden>
+        <div class="prova-virtuale-schermo">
+            <video id="prova-video" autoplay playsinline muted></video>
+            <canvas id="prova-canvas"></canvas>
+            <p id="prova-stato" class="prova-stato"></p>
+
+            <!-- regolazione manuale: la stima automatica di quanto siano grandi gli
+                 occhiali rispetto al viso non è mai perfetta per tutti -->
+            <div id="prova-regolazione" class="prova-regolazione" hidden>
+                <button type="button" id="prova-rimpicciolisci" aria-label="Rimpicciolisci">−</button>
+                <span>Dimensione</span>
+                <button type="button" id="prova-ingrandisci" aria-label="Ingrandisci">+</button>
+            </div>
+
+            <button type="button" id="prova-scatta" class="prova-scatta" hidden>Scatta la foto</button>
+        </div>
+        <button type="button" id="chiudi-prova-virtuale" class="prova-chiudi" aria-label="Chiudi la prova virtuale">×</button>
+
+        <!-- la foto appena scattata, con le opzioni di condivisione: nascosto finché
+             non si scatta una foto -->
+        <div id="prova-risultato" class="prova-risultato" hidden>
+            <img id="prova-foto" alt="La foto scattata con gli occhiali virtuali">
+            <div class="prova-risultato-azioni">
+                <button type="button" id="prova-condividi" class="btn-principale">Condividi la foto</button>
+                <button type="button" id="prova-scarica" class="prova-link">Scarica la foto</button>
+                <div class="prova-link-piattaforme">
+                    <button type="button" id="prova-instagram" class="prova-link">Instagram</button>
+                    <a id="prova-telegram" class="prova-link" href="#" target="_blank" rel="noopener">Telegram</a>
+                    <a id="prova-whatsapp" class="prova-link" href="#" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+                <p class="prova-nota-instagram">Instagram non ha un indirizzo web per ricevere foto: il bottone apre il pannello di condivisione del telefono, dove su mobile trovi anche Instagram tra le app.</p>
+                <button type="button" id="prova-riprova" class="prova-link">← Scatta un'altra foto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- qui si inserisce il codice JavaScript -->
+    <script type="module" src="js/scheda.js"></script>
+
+</body>
+</html>
